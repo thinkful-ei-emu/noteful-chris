@@ -3,8 +3,7 @@ import React from 'react';
 const StateContext = React.createContext({
     folders: [],
     notes: [],
-    notesApiCall: () => [],
-    foldersApiCall: () => []
+    deleteNote: () => {},
 })
 
 export default StateContext;

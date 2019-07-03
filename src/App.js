@@ -58,13 +58,42 @@ export default class App extends React.Component {
         this.setState({
           error: err.message
         });
+    })
+  }
+
+  deleteNote = (noteId) => {
+    const url = `http://localhost:9090/notes/${noteId}`;
+    
+    fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json'
+      },
+    })
+      .then(res => {
+        if(!res.ok) {
+          return res.json().then(error => {
+            throw error;
+          })
+        }
+        return res.json()
+      })
+      .then(() => {
+        const newNotes = this.state.notes.filter(nts => nts.id !== noteId)
+        this.setState({
+          notes: newNotes
         })
-      }
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  }
 
   render(){
     const contextValue = {
       folders: this.state.folders,
       notes: this.state.notes,
+      deleteNote: this.deleteNote,
     }
     return (
       <section className='App'>
