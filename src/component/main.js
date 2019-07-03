@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import StateContext from '../stateContext';
 
-function Main({notes}) {
+
+class Main extends React.Component {
+    static contextType = StateContext;
+
+    render() {
+        const {notes} = this.context;
     const newNote = notes.map(note => (
         <li>
             <div><Link to={`/Note/${note.id}`}>{note.name}</Link></div>
@@ -21,6 +27,7 @@ function Main({notes}) {
         </div>
     </div>
     )
+}
 }
 
 export default Main;

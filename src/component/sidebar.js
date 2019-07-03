@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import StateContext from '../stateContext';
 
-function Sidebar({folders}) {
+class Sidebar extends React.Component {
+    static contextType = StateContext;
+    render() {
+    const { folders } = this.context;
     const folder = folders.map(folder => 
         <li key={folder.id}><Link to={`/Folder/${folder.id}`}>{folder.name}</Link></li>)
     return (
@@ -14,6 +18,7 @@ function Sidebar({folders}) {
         </div>
     </div>
     )
+}
 }
 
 export default Sidebar;

@@ -6,6 +6,7 @@ import FolderMain from './component/Folder-Main';
 import Main from './component/main';
 import NoteSidebar from './component/NoteSidebar';
 import NoteMain from './component/NoteMain';
+import StateContext from './stateContext';
 
 export default class App extends React.Component {
   state={
@@ -131,17 +132,21 @@ export default class App extends React.Component {
         <header>
           <Link to='/'><h1>Noteful</h1></Link>
         </header>
+        <StateContext.Provider value={{
+          folders: this.state.folders,
+          notes: this.state.notes
+        }}>
         <main>
           <Route 
             exact path='/' 
             render={()=>
-              <Sidebar folders={this.state.folders} />
+              <Sidebar />
             }
           />  
           <Route 
             exact path='/' 
             render={()=>
-              <Main notes={this.state.notes} />
+              <Main />
             }
           />  
            
@@ -169,6 +174,7 @@ export default class App extends React.Component {
             />  
           
         </main>
+        </StateContext.Provider>
       </section>
         
     );
