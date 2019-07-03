@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-// import Header from './component/header';
 import Sidebar from './component/sidebar';
 import FolderSidebar from './component/FolderSidebar';
 import FolderMain from './component/Folder-Main';
@@ -129,9 +128,9 @@ export default class App extends React.Component {
 
     return (
       <section className='App'>
-        <nav>
+        <header>
           <Link to='/'><h1>Noteful</h1></Link>
-        </nav>
+        </header>
         <main>
           <Route 
             exact path='/' 
