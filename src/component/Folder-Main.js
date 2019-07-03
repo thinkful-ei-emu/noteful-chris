@@ -5,12 +5,15 @@ import StateContext from '../stateContext';
 class FolderMain extends React.Component {
     static contextType = StateContext;
     render(){ 
-        const{ notes } = this.context; 
+        const{ notes, deleteNote} = this.context; 
         const newNotes = notes.map((note, index) => note.folderId === this.props.match.params.folderId ? (
             <div key={index}>
                 <div><Link to={`/Note/${note.id}`}>{note.name}</Link></div>
                 <div>Date modified on {note.modified}</div>
-                <button>Delete Note</button>
+                <button onClick={() =>{
+                    deleteNote(note.id)}}>
+                        Delete Note
+                </button>
             </div>
             ) : <div key={index}></div> )
         return (
