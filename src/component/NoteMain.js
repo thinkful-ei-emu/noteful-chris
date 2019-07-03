@@ -1,7 +1,11 @@
 import React from 'react';
+import StateContext from '../stateContext';
 
-function NoteMain(props) {
-    const newNote = props.notes.map(note => note.id === props.match.params.noteId ? (
+class NoteMain extends React.Component {
+    static contextType = StateContext;
+    render(){
+        const {notes} = this.context;
+    const newNote = notes.map(note => note.id === this.props.match.params.noteId ? (
         <div>
             <div>{note.name}</div>
             <div>Date modified on {note.modified}</div>
@@ -10,6 +14,7 @@ function NoteMain(props) {
         </div>
         ) : '' )
     return <div>{newNote}</div>
+}
 }
 
 export default NoteMain;

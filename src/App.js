@@ -139,38 +139,30 @@ export default class App extends React.Component {
         <main>
           <Route 
             exact path='/' 
-            render={()=>
-              <Sidebar />
-            }
+            component= {Sidebar}
           />  
           <Route 
             exact path='/' 
-            render={()=>
-              <Main />
-            }
+            component= {Main}
           />  
            
           <Route path='/Folder/:folderId' 
-            render={(props)=>
-              <FolderSidebar match={props.match} folders={this.state.folders} />
-            }
+            component={FolderSidebar}
+            // render={(props)=>
+            //   <FolderSidebar match={props.match} folders={this.state.folders} />
+            // }
           /> 
 
           <Route path='/Folder/:folderId'
-            render={(props)=>
-              <FolderMain match={props.match} notes={this.state.notes} />
-            }
+            component={FolderMain}
+        
           />  
           <Route path='/Note/:noteId' 
-             render={(props)=>
-              <NoteSidebar {...props} notes={this.state.notes} folders={this.state.folders} />
-             }
+            component={NoteSidebar}
             />
 
           <Route path='/Note/:noteId' 
-            render={(props)=>
-              <NoteMain match={props.match} notes={this.state.notes} />
-            }
+            component={NoteMain}
             />  
           
         </main>

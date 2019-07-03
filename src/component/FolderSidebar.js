@@ -1,9 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import './FolderSidebar.css';
+import StateContext from '../stateContext';
 
-function FolderSidebar(props) {
-    const folder = props.folders.map(folder => folder.id === props.match.params.folderId ? 
+class FolderSidebar extends React.Component{
+    static contextType = StateContext;
+    render(){
+    const {folders} = this.context
+    const folder = folders.map(folder => folder.id === this.props.match.params.folderId ? 
         <li className="selected" key={folder.id}><Link to={`/Folder/${folder.id}`}>{folder.name}
         </Link></li> : <li><Link to={`/Folder/${folder.id}`}>{folder.name}</Link></li>)
     return (
@@ -16,6 +20,7 @@ function FolderSidebar(props) {
         </div>
     </div>
     )
+}
 }
 
 export default FolderSidebar;

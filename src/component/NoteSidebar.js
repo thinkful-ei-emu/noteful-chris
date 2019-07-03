@@ -1,18 +1,23 @@
 import React from 'react';
+import StateContext from '../stateContext'
 
 
-function NoteSidebar(props) {
-    const note = props.notes.find(note => note.id === props.match.params.noteId)
-    const folder = props.folders.map(folder => folder.id === note.folderId ? 
+class NoteSidebar extends React.Component {
+    static contextType = StateContext;
+    render(){
+        const {notes, folders} = this.context;
+    const note = notes.find(note => note.id === this.props.match.params.noteId)
+    const folder = folders.map(folder => folder.id === note.folderId ? 
         <h2 key={folder.id}>{folder.name}</h2> : '')
     return (
     <div>
         <div>
-            <button onClick={() => props.history.goBack()}>Go Back</button>
+            <button onClick={() => this.props.history.goBack()}>Go Back</button>
         </div>
         <div>{folder}</div>
     </div>
     )
+}
 }
 
 export default NoteSidebar;
