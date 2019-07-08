@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import StateContext from '../stateContext';
 
 
@@ -9,7 +9,7 @@ class Main extends React.Component {
     render() {
         const {notes, deleteNote} = this.context;
     const newNote = notes.map(note => (
-        <li>
+        <li key={note.id}>
             <div><Link to={`/Note/${note.id}`}>{note.name}</Link></div>
             <div>Date modified on {note.modified}</div>
             <button onClick={() => {
@@ -26,7 +26,7 @@ class Main extends React.Component {
             {newNote}
         </ul>
         <div>
-            <button>Add note</button>
+            <button><Link to={`/AddNote`}>Add note</Link></button>
         </div>
     </div>
     )

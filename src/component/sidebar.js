@@ -14,7 +14,7 @@ class Sidebar extends React.Component {
             {folder}        
         </ul>
         <div>
-            <button>Add Folder</button>
+            <button><Link to={`/AddFolder`}>Add Folder</Link></button>
         </div>
     </div>
     )

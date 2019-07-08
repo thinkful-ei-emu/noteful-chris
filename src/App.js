@@ -6,7 +6,10 @@ import FolderMain from './component/Folder-Main';
 import Main from './component/main';
 import NoteSidebar from './component/NoteSidebar';
 import NoteMain from './component/NoteMain';
+import AddNote from './component/AddNote';
+import AddFolder from './component/AddFolder';
 import StateContext from './stateContext';
+import AddError from './component/AddError';
 
 export default class App extends React.Component {
   state={
@@ -31,7 +34,6 @@ export default class App extends React.Component {
         })
       .then(data => {
         this.setState({notes: data});
-        console.log(this.state.notes);
       })
       .catch(err => {
         this.setState({
@@ -52,12 +54,23 @@ export default class App extends React.Component {
         })
       .then(data => {
         this.setState({folders: data});
-        console.log(this.state.folders);
       })
       .catch(err => {
         this.setState({
           error: err.message
         });
+    })
+  }
+
+  addNote = note => {
+    this.setState({
+      notes: [...this.state.notes, note ]
+    })
+  }
+
+  addFolder = folder => {
+    this.setState({
+      folders: [...this.state.folders, folder]
     })
   }
 
@@ -94,6 +107,8 @@ export default class App extends React.Component {
       folders: this.state.folders,
       notes: this.state.notes,
       deleteNote: this.deleteNote,
+      addNote: this.addNote,
+      addFolder: this.addFolder,
     }
     return (
       <section className='App'>
@@ -102,6 +117,17 @@ export default class App extends React.Component {
         </header>
         <StateContext.Provider value={contextValue}>
         <main>
+          <AddError>
+            <Route 
+              exact path ='/AddNote'
+              component={AddNote} 
+            />
+
+            <Route 
+              exact path ='/AddFolder'
+              component={AddFolder} 
+            />
+          </AddError>
           <Route 
             exact path='/' 
             component= {Sidebar}

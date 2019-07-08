@@ -1,6 +1,6 @@
 import React from 'react';
-import StateContext from '../stateContext'
-
+import StateContext from '../stateContext';
+import PropTypes from 'prop-types';
 
 class NoteSidebar extends React.Component {
     static contextType = StateContext;
@@ -19,5 +19,10 @@ class NoteSidebar extends React.Component {
     )
 }
 }
+
+NoteSidebar.propTypes = {
+    match:PropTypes.object,
+    history:PropTypes.object
+  };
 
 export default NoteSidebar;

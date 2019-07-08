@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import StateContext from '../stateContext';
+import PropTypes from 'prop-types';
 
 class FolderMain extends React.Component {
     static contextType = StateContext;
@@ -19,10 +20,14 @@ class FolderMain extends React.Component {
         return (
         <div>
             <div>{newNotes}</div>
-            <button>Add Note</button>
+            <button><Link to={`/AddNote`}>Add note</Link></button>
         </div>
         )
     }
 }
+
+FolderMain.propTypes = {
+    match:PropTypes.object
+  };
 
 export default FolderMain;

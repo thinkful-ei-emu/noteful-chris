@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import './FolderSidebar.css';
 import StateContext from '../stateContext';
+import PropTypes from 'prop-types';
 
 class FolderSidebar extends React.Component{
     static contextType = StateContext;
@@ -9,18 +10,22 @@ class FolderSidebar extends React.Component{
     const {folders} = this.context
     const folder = folders.map(folder => folder.id === this.props.match.params.folderId ? 
         <li className="selected" key={folder.id}><Link to={`/Folder/${folder.id}`}>{folder.name}
-        </Link></li> : <li><Link to={`/Folder/${folder.id}`}>{folder.name}</Link></li>)
+        </Link></li> : <li key={folder.id}><Link to={`/Folder/${folder.id}`}>{folder.name}</Link></li>)
     return (
     <div>
         <ul>
             {folder}        
         </ul>
         <div>
-            <button>Add Folder</button>
+            <button><Link to={`/AddFolder`}>Add Folder</Link></button>
         </div>
     </div>
     )
 }
 }
+
+FolderSidebar.propTypes = {
+    match:PropTypes.object
+  };
 
 export default FolderSidebar;
