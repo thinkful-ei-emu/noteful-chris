@@ -1,11 +1,15 @@
 import React from 'react';
-import StateContext from '../stateContext';
+import StateContext from '../StateContext';
 import PropTypes from 'prop-types';
 
 class AddFolder extends React.Component {
     static contextType = StateContext;
 
     state = {
+        name: {
+            value: '',
+            touched: false,
+        },
         error: null,
     }
 
@@ -16,12 +20,16 @@ class AddFolder extends React.Component {
         return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
     }
 
+    newFolderName(name) {
+        this.setState({name: { value: name, touched: true }})
+    }
+
     handleSubmit = e => {
         e.preventDefault()
-        const { foldertitle } = e.target;
+        const { name } = this.state;
         const note = {
             id: this.guidGenerator(),
-            name: foldertitle.value,
+            name: name.value,
         }
         this.setState({error:null})
         console.log(note);
@@ -44,7 +52,7 @@ class AddFolder extends React.Component {
             return res.json()
         })
         .then(data => {
-            foldertitle.value = '';
+            name.value = '';
             this.context.addFolder(data);
             this.props.history.push('/');
         })
@@ -64,7 +72,8 @@ class AddFolder extends React.Component {
                 <form className='addNote-form' onSubmit={this.handleSubmit}>
                     <div>
                         <label htmlFor="foldertitle">Note Title:</label>
-                        <input type="text" name="foldertitle" placeholder="Name Here!" required />
+                        <input type="text" name="foldertitle" placeholder="Name Here!" required
+                        onChange={e => this.newFolderName(e.target.value) } />
                     </div>
                     <div>
                         <button type="button" onClick={this.handleCancelClick}>
@@ -82,7 +91,9 @@ class AddFolder extends React.Component {
 }
 
 AddFolder.propTypes = {
-    history:PropTypes.object
+    history:PropTypes.shape({
+        push: PropTypes.func,
+    })
   };
 
 export default AddFolder;

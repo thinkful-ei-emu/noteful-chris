@@ -1,5 +1,5 @@
 import React from 'react';
-import StateContext from '../stateContext';
+import StateContext from '../StateContext';
 import PropTypes from 'prop-types';
 
 class AddNote extends React.Component {
@@ -7,6 +7,18 @@ class AddNote extends React.Component {
 
     state = {
         error: null,
+        name: {
+            value: '',
+            touched: false
+        },
+        folderId: {
+            value: '',
+            touched: false
+        },
+        content: {
+            value: '',
+            touched: false
+        },
     }
 
     guidGenerator = () => {
@@ -16,15 +28,27 @@ class AddNote extends React.Component {
         return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
     }
 
+    createNoteName(name) {
+        this.setState({ name: { value: name, touched: true }})
+    }
+
+    createNoteFolderId(folderId) {
+        this.setState({ folderId: { value: folderId, touched: true }})
+    }
+
+    createNoteContent(content) {
+        this.setState({ content: { value: content, touched: true }})
+    }
+
     handleSubmit = e => {
         e.preventDefault()
-        const { notetitle, description, folderId } = e.target;
+        const { name, content, folderId } = this.state;
         const note = {
             id: this.guidGenerator(),
-            name: notetitle.value,
+            name: name.value,
             modified: `${Date.now()}`,
             folderId: folderId.value,
-            content: description.value
+            content: content.value
         }
         this.setState({error:null})
         console.log(note);
@@ -47,8 +71,9 @@ class AddNote extends React.Component {
             return res.json()
         })
         .then(data => {
-            notetitle.value = '';
-            description.value = '';
+            name.value = '';
+            content.value = '';
+            folderId.value = '';
             this.context.addNote(data);
             this.props.history.push('/');
         })
@@ -70,17 +95,20 @@ class AddNote extends React.Component {
                 <form className='addNote-form' onSubmit={this.handleSubmit}>
                     <div>
                         <label htmlFor="notetitle">Note Title:</label>
-                        <input type="text" name="notetitle" placeholder="Name Here!" required />
+                        <input type="text" name="notetitle" placeholder="Name Here!" required 
+                            onChange={e => this.createNoteName(e.target.value)} />
                     </div>
                     <div>
                         <label htmlFor='folderId'>Folder:</label>
-                        <select name='folderId'>
+                        <select name='folderId'
+                            onChange={e => this.createNoteFolderId(e.target.value)} >
                             {folderDrop}
                         </select>
                     </div>
                     <div>
                         <label htmlFor="description">Description:</label>
-                        <textarea name="description" required />
+                        <textarea name="description" required 
+                            onChange={e => this.createNoteContent(e.target.value)} />
                     </div>
                     <div>
                         <button type="button" onClick={this.handleCancelClick}>
@@ -98,7 +126,9 @@ class AddNote extends React.Component {
 }
 
 AddNote.propTypes = {
-    history:PropTypes.object
+    history:PropTypes.shape({
+        push: PropTypes.func,
+    })
   };
 
 export default AddNote;

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import Sidebar from './component/sidebar';
+import Sidebar from './component/Sidebar';
 import FolderSidebar from './component/FolderSidebar';
 import FolderMain from './component/Folder-Main';
-import Main from './component/main';
+import Main from './component/Main';
 import NoteSidebar from './component/NoteSidebar';
 import NoteMain from './component/NoteMain';
 import AddNote from './component/AddNote';
 import AddFolder from './component/AddFolder';
-import StateContext from './stateContext';
+import StateContext from './StateContext';
 import AddError from './component/AddError';
 
 export default class App extends React.Component {

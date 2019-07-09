@@ -1,5 +1,5 @@
 import React from 'react';
-import StateContext from '../stateContext';
+import StateContext from '../StateContext';
 import PropTypes from 'prop-types';
 
 class NoteSidebar extends React.Component {
@@ -21,8 +21,12 @@ class NoteSidebar extends React.Component {
 }
 
 NoteSidebar.propTypes = {
-    match:PropTypes.object,
-    history:PropTypes.object
+    match:PropTypes.shape({
+        params: PropTypes.object,
+    }),
+    history:PropTypes.shape({
+        push: PropTypes.func,
+    })
   };
 
 export default NoteSidebar;

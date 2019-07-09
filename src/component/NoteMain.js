@@ -1,5 +1,5 @@
 import React from 'react';
-import StateContext from '../stateContext';
+import StateContext from '../StateContext';
 import PropTypes from 'prop-types';
 
 class NoteMain extends React.Component {
@@ -25,7 +25,9 @@ class NoteMain extends React.Component {
 }
 
 NoteMain.propTypes = {
-    match:PropTypes.object
+    match:PropTypes.shape({
+        params: PropTypes.object,
+    })
   };
 
 export default NoteMain;

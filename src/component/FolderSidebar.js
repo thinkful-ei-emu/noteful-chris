@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import './FolderSidebar.css';
-import StateContext from '../stateContext';
+import StateContext from '../StateContext';
 import PropTypes from 'prop-types';
 
 class FolderSidebar extends React.Component{
@@ -25,7 +25,9 @@ class FolderSidebar extends React.Component{
 }
 
 FolderSidebar.propTypes = {
-    match:PropTypes.object
+    match:PropTypes.shape({
+        params: PropTypes.object,
+    })
   };
 
 export default FolderSidebar;

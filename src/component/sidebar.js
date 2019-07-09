@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import StateContext from '../stateContext';
+import StateContext from '../StateContext';
 
 class Sidebar extends React.Component {
     static contextType = StateContext;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import StateContext from '../stateContext';
+import StateContext from '../StateContext';
 import PropTypes from 'prop-types';
 
 class FolderMain extends React.Component {
@@ -27,7 +27,9 @@ class FolderMain extends React.Component {
 }
 
 FolderMain.propTypes = {
-    match:PropTypes.object
+    match:PropTypes.shape({
+        params: PropTypes.object,
+    })
   };
 
 export default FolderMain;
