@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import StateContext from '../StateContext';
 
+import './Sidebar.css';
+
 class Sidebar extends React.Component {
     static contextType = StateContext;
     render() {
@@ -9,12 +11,12 @@ class Sidebar extends React.Component {
     const folder = folders.map(folder => 
         <li key={folder.id}><Link to={`/Folder/${folder.id}`}>{folder.name}</Link></li>)
     return (
-    <div>
+    <div className="sidebar">
         <ul>
             {folder}        
         </ul>
         <div>
-            <button><Link to={`/AddFolder`}>Add Folder</Link></button>
+            <button className="AddFol"><Link to={`/AddFolder`}>Add Folder</Link></button>
         </div>
     </div>
     )

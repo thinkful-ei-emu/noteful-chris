@@ -8,7 +8,7 @@ class FolderMain extends React.Component {
     render(){ 
         const{ notes, deleteNote} = this.context; 
         const newNotes = notes.map((note, index) => note.folderId === this.props.match.params.folderId ? (
-            <div key={index}>
+            <div className='noteBox' key={index}>
                 <div><Link to={`/Note/${note.id}`}>{note.name}</Link></div>
                 <div>Date modified on {note.modified}</div>
                 <button onClick={() =>{
@@ -18,7 +18,7 @@ class FolderMain extends React.Component {
             </div>
             ) : <div key={index}></div> )
         return (
-        <div>
+        <div className='main'>
             <div>{newNotes}</div>
             <button><Link to={`/AddNote`}>Add note</Link></button>
         </div>

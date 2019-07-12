@@ -20,7 +20,7 @@ class NoteMain extends React.Component {
             <p>{note.content}</p>
         </div>
         ) : '' )
-    return <div>{newNote}</div>
+    return <div className='main'>{newNote}</div>
 }
 }
 

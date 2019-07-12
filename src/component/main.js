@@ -9,7 +9,7 @@ class Main extends React.Component {
     render() {
         const {notes, deleteNote} = this.context;
     const newNote = notes.map(note => (
-        <li key={note.id}>
+        <li className='noteBox' key={note.id}>
             <div><Link to={`/Note/${note.id}`}>{note.name}</Link></div>
             <div>Date modified on {note.modified}</div>
             <button onClick={() => {
@@ -21,7 +21,7 @@ class Main extends React.Component {
         )
     )
     return (
-    <div>
+    <div className='main'>
         <ul>
             {newNote}
         </ul>

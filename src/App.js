@@ -11,6 +11,8 @@ import AddFolder from './component/AddFolder';
 import StateContext from './StateContext';
 import AddError from './component/AddError';
 
+import './App.css';
+
 export default class App extends React.Component {
   state={
     folders: [],

@@ -12,12 +12,12 @@ class FolderSidebar extends React.Component{
         <li className="selected" key={folder.id}><Link to={`/Folder/${folder.id}`}>{folder.name}
         </Link></li> : <li key={folder.id}><Link to={`/Folder/${folder.id}`}>{folder.name}</Link></li>)
     return (
-    <div>
+    <div className='sidebar'>
         <ul>
             {folder}        
         </ul>
         <div>
-            <button><Link to={`/AddFolder`}>Add Folder</Link></button>
+            <button className='AddFol'><Link to={`/AddFolder`}>Add Folder</Link></button>
         </div>
     </div>
     )
