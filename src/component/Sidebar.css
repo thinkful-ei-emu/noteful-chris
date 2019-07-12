@@ -18,7 +18,7 @@ li > a:link, a:visited {
   }
 
   .sidebar {
-      width: 33vh;
+      width: 450px;
       border-right: 1px solid lightgray;
   }
 

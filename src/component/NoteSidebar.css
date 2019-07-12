@@ -1,0 +1,8 @@
+.noteSidebar {
+    width: 450px;
+    border-right: 1px solid lightgray;
+}
+
+.goBack {
+    margin-left: 40px;
+}

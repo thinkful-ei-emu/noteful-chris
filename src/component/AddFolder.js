@@ -2,6 +2,8 @@ import React from 'react';
 import StateContext from '../StateContext';
 import PropTypes from 'prop-types';
 
+import './Add.css';
+
 class AddFolder extends React.Component {
     static contextType = StateContext;
 
@@ -67,7 +69,7 @@ class AddFolder extends React.Component {
 
     render(){
         return (
-            <section>
+            <section className='addStuff'>
                 <h2>Add a Folder</h2>
                 <form className='addNote-form' onSubmit={this.handleSubmit}>
                     <div>

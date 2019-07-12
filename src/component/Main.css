@@ -1,0 +1,9 @@
+.AddNote {
+    margin-left: 40px;
+}
+
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}

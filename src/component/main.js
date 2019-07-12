@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import StateContext from '../StateContext';
 
+import './Main.css'
 
 class Main extends React.Component {
     static contextType = StateContext;
@@ -21,12 +22,12 @@ class Main extends React.Component {
         )
     )
     return (
-    <div className='main'>
-        <ul>
+    <div>
+        <ul className='main'>
             {newNote}
         </ul>
         <div>
-            <button><Link to={`/AddNote`}>Add note</Link></button>
+            <button className='AddNote'><Link to={`/AddNote`}>Add note</Link></button>
         </div>
     </div>
     )

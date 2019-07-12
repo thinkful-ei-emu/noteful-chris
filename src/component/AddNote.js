@@ -2,6 +2,8 @@ import React from 'react';
 import StateContext from '../StateContext';
 import PropTypes from 'prop-types';
 
+import './Add.css';
+
 class AddNote extends React.Component {
     static contextType = StateContext;
 
@@ -90,7 +92,7 @@ class AddNote extends React.Component {
         const folderDrop = this.context.folders.map(folder => 
             <option value={folder.id}>{folder.name}</option>)
         return (
-            <section>
+            <section className='addStuff'>
                 <h2>Add a Note</h2>
                 <form className='addNote-form' onSubmit={this.handleSubmit}>
                     <div>
